@@ -1,0 +1,25 @@
+---
+name: "Dark Mode Example"
+handle: "@darkmode"
+bio: "Ejemplo del tema oscuro con acentos azules"
+avatar: "https://avatars.githubusercontent.com/u/9919?v=4"
+theme: "dark"
+accentColor: "#60A5FA"
+social:
+  - type: "github"
+    url: "https://github.com/example"
+  - type: "x"
+    url: "https://x.com/example"
+links:
+  - label: "Documentación"
+    url: "https://docs.example.com"
+    icon: "book"
+  - label: "GitHub Repository"
+    url: "https://github.com/example/repo"
+    icon: "code"
+  - label: "Demo"
+    url: "https://example.com/demo"
+    icon: "play"
+    badge: "Live"
+footer: "© 2025 Dark Mode Example"
+---

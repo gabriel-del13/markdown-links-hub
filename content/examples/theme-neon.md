@@ -1,0 +1,27 @@
+---
+name: "Neon Theme"
+handle: "@neonvibes"
+bio: "Ejemplo del tema neon con efectos de brillo"
+avatar: "https://avatars.githubusercontent.com/u/1024025?v=4"
+theme: "neon"
+accentColor: "#00FFF0"
+social:
+  - type: "tiktok"
+    url: "https://tiktok.com/@example"
+  - type: "instagram"
+    url: "https://instagram.com/example"
+  - type: "youtube"
+    url: "https://youtube.com/@example"
+links:
+  - label: "Music Playlist"
+    url: "https://spotify.com/playlist"
+    icon: "play"
+    badge: "Hot"
+  - label: "Merch Store"
+    url: "https://store.example.com"
+    icon: "star"
+  - label: "Book a Session"
+    url: "https://cal.com/example"
+    icon: "calendar"
+footer: "© 2025 Neon Vibes"
+---
