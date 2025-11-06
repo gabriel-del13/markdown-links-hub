@@ -1,7 +1,6 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { parseProfile } from '@/lib/parse'
-import { getThemeTokens, generateCSSVariables } from '@/lib/themes'
 import Profile from '@/components/Profile'
 import type { Metadata } from 'next'
 
@@ -40,21 +39,5 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   const { data, content } = getProfileData()
 
-  // Allow theme override via query param (handled client-side in production)
-  // For static generation, use the theme from profile
-  const theme = data.theme
-
-  // Get theme tokens
-  const tokens = getThemeTokens(theme, data.accentColor)
-  const cssVars = generateCSSVariables(tokens)
-
-  return (
-    <div
-      data-theme={theme}
-      style={cssVars as React.CSSProperties}
-      className="min-h-screen"
-    >
-      <Profile profile={data} content={content} />
-    </div>
-  )
+  return <Profile profile={data} content={content} />
 }

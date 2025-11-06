@@ -1,4 +1,8 @@
 import type { Metadata } from 'next'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import { parseProfile } from '@/lib/parse'
+import { getThemeTokens, generateCSSVariables } from '@/lib/themes'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -10,14 +14,29 @@ export const metadata: Metadata = {
   },
 }
 
+// Read profile data for theme configuration
+function getProfileTheme() {
+  const profilePath = join(process.cwd(), 'content', 'profile.md')
+  const fileContent = readFileSync(profilePath, 'utf-8')
+  const { data } = parseProfile(fileContent)
+  return {
+    theme: data.theme,
+    accentColor: data.accentColor,
+  }
+}
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const { theme, accentColor } = getProfileTheme()
+  const tokens = getThemeTokens(theme, accentColor)
+  const cssVars = generateCSSVariables(tokens)
+
   return (
-    <html lang="es">
-      <body>{children}</body>
+    <html lang="es" data-theme={theme}>
+      <body style={cssVars as React.CSSProperties}>{children}</body>
     </html>
   )
 }
