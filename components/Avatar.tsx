@@ -14,7 +14,7 @@ export default function Avatar({ src, alt, theme }: AvatarProps) {
     <div className={`
       relative
       ${isCard ? 'w-32 h-32' : 'w-24 h-24'}
-      ${isPhoto ? 'rounded-full ring-4 ring-white/30' : 'rounded-[var(--radius-lg)]'}
+      ${isPhoto ? 'rounded-full ring-4 ring-[var(--border)]' : 'rounded-[var(--radius-lg)]'}
       overflow-hidden
       ${isPhoto ? 'shadow-[var(--shadow)]' : 'shadow-md'}
       flex-shrink-0

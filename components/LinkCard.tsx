@@ -61,7 +61,7 @@ export default function LinkCard({ link, theme }: LinkCardProps) {
               <span className={`
                 px-2 py-0.5 text-xs font-medium rounded-full
                 bg-[var(--accent)]
-                text-white
+                text-[var(--accent-text)]
                 flex-shrink-0
               `}>
                 {link.badge}

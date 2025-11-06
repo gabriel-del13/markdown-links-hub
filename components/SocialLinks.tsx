@@ -24,7 +24,7 @@ export default function SocialLinks({ social }: SocialLinksProps) {
             border border-[var(--border)]
             text-[var(--text)]
             hover:bg-[var(--accent)]
-            hover:text-white
+            hover:text-[var(--accent-text)]
             hover:border-[var(--accent)]
             hover:scale-110
             focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]

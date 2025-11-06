@@ -8,6 +8,7 @@ export interface ThemeTokens {
     subtext: string
     accent: string
     accentHover: string
+    accentText: string
     border: string
   }
   radii: {
@@ -72,6 +73,7 @@ export function getThemeTokens(
         subtext: '#6B7280',
         accent: accentColor || '#5B8CFF',
         accentHover: accentColor ? darkenColor(accentColor, 10) : '#4A7AE8',
+        accentText: '#FFFFFF',
         border: '#E5E7EB',
       },
       radii: {
@@ -104,6 +106,7 @@ export function getThemeTokens(
         subtext: '#9CA3AF',
         accent: accentColor || '#5B8CFF',
         accentHover: accentColor ? darkenColor(accentColor, 8) : '#4A7AE8',
+        accentText: '#FFFFFF',
         border: '#2D2D2E',
       },
       radii: {
@@ -136,6 +139,7 @@ export function getThemeTokens(
         subtext: '#6B7280',
         accent: accentColor || '#6366F1',
         accentHover: accentColor ? darkenColor(accentColor, 10) : '#4F46E5',
+        accentText: '#FFFFFF',
         border: '#E0E7FF',
       },
       radii: {
@@ -168,6 +172,7 @@ export function getThemeTokens(
         subtext: '#666666',
         accent: accentColor || '#000000',
         accentHover: accentColor ? darkenColor(accentColor, 12) : '#333333',
+        accentText: '#FFFFFF',
         border: '#E0E0E0',
       },
       radii: {
@@ -198,6 +203,7 @@ export function getThemeTokens(
         subtext: '#A0AEC0',
         accent: accentColor || '#00FFF0',
         accentHover: accentColor ? darkenColor(accentColor, 15) : '#00CCC1',
+        accentText: '#0D0F13',
         border: '#2D3748',
       },
       radii: {
@@ -230,6 +236,7 @@ export function getThemeTokens(
         subtext: '#6B7280',
         accent: accentColor || '#8B5CF6',
         accentHover: accentColor ? darkenColor(accentColor, 10) : '#7C3AED',
+        accentText: '#FFFFFF',
         border: '#E5E7EB',
       },
       radii: {
@@ -262,6 +269,7 @@ export function getThemeTokens(
         subtext: '#D1D5DB',
         accent: accentColor || '#F59E0B',
         accentHover: accentColor ? darkenColor(accentColor, 10) : '#D97706',
+        accentText: '#FFFFFF',
         border: 'rgba(255, 255, 255, 0.2)',
       },
       radii: {
@@ -301,6 +309,7 @@ export function generateCSSVariables(tokens: ThemeTokens): Record<string, string
     '--subtext': tokens.colors.subtext,
     '--accent': tokens.colors.accent,
     '--accent-hover': tokens.colors.accentHover,
+    '--accent-text': tokens.colors.accentText,
     '--border': tokens.colors.border,
     '--radius-xs': tokens.radii.xs,
     '--radius-sm': tokens.radii.sm,
