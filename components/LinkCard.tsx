@@ -1,14 +1,50 @@
 import type { Link } from '@/lib/types'
+import type { ThemeTokens } from '@/lib/themes'
 import { LinkIconComponent } from './icons/LinkIcons'
 
 interface LinkCardProps {
   link: Link
   theme: string
+  variant?: ThemeTokens['variant']
 }
 
-export default function LinkCard({ link, theme }: LinkCardProps) {
+export default function LinkCard({ link, theme, variant }: LinkCardProps) {
   const isCard = theme === 'card'
   const isNeon = theme === 'neon'
+  const linkStyle = variant?.linkStyle || 'default'
+  const borderStyle = variant?.borderStyle || 'solid'
+  const hasHoverScale = variant?.hasHoverScale !== false
+  const hasGlassEffect = variant?.hasGlassEffect || false
+
+  // Determine border classes
+  const getBorderClasses = () => {
+    if (borderStyle === 'none') return ''
+    if (borderStyle === 'thick') return 'border-2'
+    if (isNeon) return 'border-2 hover:shadow-[var(--glow)]'
+    return 'border hover:border-[var(--accent)]'
+  }
+
+  // Determine glass effect classes
+  const getGlassClasses = () => {
+    if (hasGlassEffect) {
+      return 'backdrop-blur-md bg-opacity-90'
+    }
+    return ''
+  }
+
+  // Determine hover scale classes
+  const getScaleClasses = () => {
+    if (!hasHoverScale) return ''
+    return 'hover:scale-[1.02] active:scale-[0.98]'
+  }
+
+  // Determine shadow classes based on link style
+  const getShadowClasses = () => {
+    if (linkStyle === 'elevated') return 'shadow-[var(--shadow)] hover:shadow-lg'
+    if (linkStyle === 'flat') return 'shadow-[var(--shadow)]'
+    if (isNeon) return 'hover:shadow-[var(--glow)]'
+    return ''
+  }
 
   return (
     <a
@@ -18,13 +54,14 @@ export default function LinkCard({ link, theme }: LinkCardProps) {
       className={`
         group relative block w-full transition-all duration-200
         ${isCard ? 'p-5' : 'p-4'}
-        ${isNeon ? 'border-2 hover:shadow-[var(--glow)]' : 'border hover:border-[var(--accent)]'}
+        ${getBorderClasses()}
+        ${getShadowClasses()}
+        ${getGlassClasses()}
+        ${getScaleClasses()}
         rounded-[var(--radius-md)]
         bg-[var(--surface)]
         border-[var(--border)]
-        hover:scale-[1.02]
         focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]
-        active:scale-[0.98]
       `}
       title={link.description || link.label}
     >
@@ -59,10 +96,13 @@ export default function LinkCard({ link, theme }: LinkCardProps) {
             </h3>
             {link.badge && (
               <span className={`
-                px-2 py-0.5 text-xs font-medium rounded-full
+                px-2.5 py-1 text-xs font-semibold rounded-full
                 bg-[var(--accent)]
                 text-[var(--accent-text)]
                 flex-shrink-0
+                shadow-sm
+                group-hover:shadow-md
+                transition-shadow duration-200
               `}>
                 {link.badge}
               </span>
@@ -79,8 +119,8 @@ export default function LinkCard({ link, theme }: LinkCardProps) {
         <div className={`
           flex-shrink-0 text-[var(--subtext)]
           group-hover:text-[var(--accent)]
-          group-hover:translate-x-1
-          transition-all duration-200
+          group-hover:translate-x-2
+          transition-all duration-300 ease-out
         `}>
           <svg
             width="20"

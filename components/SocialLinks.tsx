@@ -17,6 +17,7 @@ export default function SocialLinks({ social }: SocialLinksProps) {
           target="_blank"
           rel="noopener noreferrer"
           className={`
+            group
             flex items-center justify-center
             w-11 h-11
             rounded-full
@@ -27,9 +28,12 @@ export default function SocialLinks({ social }: SocialLinksProps) {
             hover:text-[var(--accent-text)]
             hover:border-[var(--accent)]
             hover:scale-110
+            hover:rotate-6
+            hover:shadow-lg
             focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]
-            transition-all duration-200
+            transition-all duration-300 ease-out
             active:scale-95
+            active:rotate-0
           `}
           aria-label={getSocialLabel(item.type)}
           title={getSocialLabel(item.type)}

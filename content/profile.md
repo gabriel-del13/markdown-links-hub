@@ -3,7 +3,7 @@ name: "Yesi Díaz"
 handle: "@YesiDays"
 bio: "Hablo de Datos e IA."
 avatar: "https://avatars.githubusercontent.com/u/000000?v=4"
-theme: "card"
+theme: "dark"
 accentColor: "#5B8CFF"
 social:
   - type: "x"
@@ -25,6 +25,6 @@ links:
   - label: "GitHub"
     url: "https://github.com/yesidays"
     icon: "code"
-footer: "© 2025 Alex Rivera"
+footer: "© 2025 Yesi Days + Claude"
 ---
 
