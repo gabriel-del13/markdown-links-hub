@@ -3,7 +3,7 @@ name: "Yesi Díaz"
 handle: "@YesiDays"
 bio: "Hablo de Datos e IA."
 avatar: "https://avatars.githubusercontent.com/u/000000?v=4"
-theme: "dark"
+theme: "neon"
 accentColor: "#5B8CFF"
 social:
   - type: "x"
