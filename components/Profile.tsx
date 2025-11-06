@@ -1,4 +1,5 @@
 import type { ProfileData } from '@/lib/types'
+import type { ThemeTokens } from '@/lib/themes'
 import Avatar from './Avatar'
 import SocialLinks from './SocialLinks'
 import LinkCard from './LinkCard'
@@ -7,15 +8,17 @@ import MarkdownContent from './MarkdownContent'
 interface ProfileProps {
   profile: ProfileData
   content?: string
+  tokens: ThemeTokens
 }
 
-export default function Profile({ profile, content }: ProfileProps) {
+export default function Profile({ profile, content, tokens }: ProfileProps) {
   const { name, handle, bio, avatar, theme, social, links, footer } = profile
 
   const isMinimal = theme === 'minimal'
   const isPhoto = theme === 'photo'
   const isCard = theme === 'card'
   const isGradient = theme === 'gradient'
+  const variant = tokens.variant
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8 sm:py-12">
@@ -23,7 +26,7 @@ export default function Profile({ profile, content }: ProfileProps) {
       <header className="text-center mb-8 sm:mb-10">
         {/* Avatar */}
         <div className="flex justify-center mb-6">
-          <Avatar src={avatar} alt={name} theme={theme} />
+          <Avatar src={avatar} alt={name} theme={theme} avatarStyle={variant?.avatarStyle} />
         </div>
 
         {/* Name & Handle */}
@@ -76,7 +79,7 @@ export default function Profile({ profile, content }: ProfileProps) {
       <main>
         <nav aria-label="Enlaces principales" className="space-y-3 sm:space-y-4">
           {links.map((link, index) => (
-            <LinkCard key={`${link.url}-${index}`} link={link} theme={theme} />
+            <LinkCard key={`${link.url}-${index}`} link={link} theme={theme} variant={variant} />
           ))}
         </nav>
 

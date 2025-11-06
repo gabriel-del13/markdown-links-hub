@@ -54,7 +54,7 @@ export default function HomePage() {
       style={cssVars as React.CSSProperties}
       className="min-h-screen bg-[var(--bg)]"
     >
-      <Profile profile={data} content={content} />
+      <Profile profile={data} content={content} tokens={tokens} />
     </div>
   )
 }

@@ -1,5 +1,9 @@
 import type { ThemeName } from './types'
 
+export type LinkStyle = 'default' | 'pill' | 'sharp' | 'glass' | 'flat' | 'elevated'
+export type AvatarStyle = 'circle' | 'square' | 'squircle'
+export type BorderStyle = 'solid' | 'none' | 'thick'
+
 export interface ThemeTokens {
   colors: {
     background: string
@@ -32,6 +36,14 @@ export interface ThemeTokens {
   effects?: {
     shadow?: string
     glow?: string
+    blur?: boolean
+  }
+  variant?: {
+    linkStyle: LinkStyle
+    avatarStyle: AvatarStyle
+    borderStyle: BorderStyle
+    hasHoverScale?: boolean
+    hasGlassEffect?: boolean
   }
 }
 
@@ -96,6 +108,12 @@ export function getThemeTokens(
       effects: {
         shadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)',
       },
+      variant: {
+        linkStyle: 'default',
+        avatarStyle: 'circle',
+        borderStyle: 'solid',
+        hasHoverScale: true,
+      },
     },
 
     dark: {
@@ -129,6 +147,12 @@ export function getThemeTokens(
       effects: {
         shadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
       },
+      variant: {
+        linkStyle: 'elevated',
+        avatarStyle: 'circle',
+        borderStyle: 'solid',
+        hasHoverScale: true,
+      },
     },
 
     gradient: {
@@ -140,12 +164,12 @@ export function getThemeTokens(
         accent: accentColor || '#667eea',
         accentHover: accentColor ? darkenColor(accentColor, 10) : '#5568d3',
         accentText: '#FFFFFF',
-        border: '#E5E7EB',
+        border: 'rgba(255, 255, 255, 0.2)',
       },
       radii: {
-        xs: '8px',
-        sm: '12px',
-        md: '16px',
+        xs: '12px',
+        sm: '16px',
+        md: '20px',
         lg: '24px',
       },
       spacing: {
@@ -160,38 +184,55 @@ export function getThemeTokens(
         bodyWeight: 400,
       },
       effects: {
-        shadow: '0 4px 12px rgba(102, 126, 234, 0.2)',
+        shadow: '0 8px 32px rgba(102, 126, 234, 0.15)',
+        blur: true,
+      },
+      variant: {
+        linkStyle: 'glass',
+        avatarStyle: 'circle',
+        borderStyle: 'solid',
+        hasHoverScale: true,
+        hasGlassEffect: true,
       },
     },
 
     minimal: {
       colors: {
-        background: '#F7F7F8',
+        background: '#FAFAF9',
         surface: '#FFFFFF',
-        text: '#1A1A1A',
-        subtext: '#666666',
-        accent: accentColor || '#000000',
-        accentHover: accentColor ? darkenColor(accentColor, 12) : '#333333',
-        accentText: '#FFFFFF',
-        border: '#E0E0E0',
+        text: '#0A0A0A',
+        subtext: '#525252',
+        accent: accentColor || '#171717',
+        accentHover: accentColor ? darkenColor(accentColor, 8) : '#404040',
+        accentText: '#FAFAF9',
+        border: '#D4D4D4',
       },
       radii: {
-        xs: '4px',
-        sm: '6px',
-        md: '8px',
-        lg: '12px',
+        xs: '6px',
+        sm: '8px',
+        md: '12px',
+        lg: '16px',
       },
       spacing: {
         xs: '8px',
-        sm: '12px',
-        md: '16px',
-        lg: '24px',
-        xl: '32px',
+        sm: '16px',
+        md: '20px',
+        lg: '28px',
+        xl: '40px',
       },
       typography: {
         titleWeight: 600,
         bodyWeight: 400,
         useMono: true,
+      },
+      effects: {
+        shadow: '0 1px 2px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02)',
+      },
+      variant: {
+        linkStyle: 'flat',
+        avatarStyle: 'squircle',
+        borderStyle: 'solid',
+        hasHoverScale: true,
       },
     },
 
@@ -207,10 +248,10 @@ export function getThemeTokens(
         border: '#2D3748',
       },
       radii: {
-        xs: '8px',
-        sm: '12px',
-        md: '16px',
-        lg: '24px',
+        xs: '16px',
+        sm: '20px',
+        md: '999px',
+        lg: '999px',
       },
       spacing: {
         xs: '8px',
@@ -225,6 +266,12 @@ export function getThemeTokens(
       },
       effects: {
         glow: `0 0 20px ${accentColor ? `${accentColor}40` : '#00FFF040'}`,
+      },
+      variant: {
+        linkStyle: 'pill',
+        avatarStyle: 'circle',
+        borderStyle: 'solid',
+        hasHoverScale: true,
       },
     },
 
@@ -259,6 +306,12 @@ export function getThemeTokens(
       effects: {
         shadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
       },
+      variant: {
+        linkStyle: 'elevated',
+        avatarStyle: 'circle',
+        borderStyle: 'none',
+        hasHoverScale: true,
+      },
     },
 
     photo: {
@@ -291,6 +344,14 @@ export function getThemeTokens(
       },
       effects: {
         shadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+        blur: true,
+      },
+      variant: {
+        linkStyle: 'glass',
+        avatarStyle: 'circle',
+        borderStyle: 'solid',
+        hasHoverScale: true,
+        hasGlassEffect: true,
       },
     },
   }
