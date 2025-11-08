@@ -2,7 +2,7 @@ import type { ProfileData } from '@/lib/types'
 import type { ThemeTokens } from '@/lib/themes'
 import Avatar from './Avatar'
 import SocialLinks from './SocialLinks'
-import LinkCardEnhanced from './LinkCardEnhanced'
+import LinkCard from './LinkCard'
 import MarkdownContent from './MarkdownContent'
 
 interface ProfileProps {
@@ -82,7 +82,7 @@ export default function Profile({ profile, content, tokens }: ProfileProps) {
       <main>
         <nav aria-label="Enlaces principales" className="space-y-3 sm:space-y-4">
           {links.map((link, index) => (
-            <LinkCardEnhanced key={`${link.url}-${index}`} link={link} theme={theme} variant={variant} />
+            <LinkCard key={`${link.url}-${index}`} link={link} theme={theme} variant={variant} />
           ))}
         </nav>
 
