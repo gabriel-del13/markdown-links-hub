@@ -1,6 +1,10 @@
+'use client'
+
+import { useState } from 'react'
 import type { Link } from '@/lib/types'
 import type { ThemeTokens } from '@/lib/themes'
 import { LinkIconComponent } from './icons/LinkIcons'
+import { copyToClipboard, shareLink } from '@/lib/utils'
 
 interface LinkCardProps {
   link: Link
@@ -9,6 +13,8 @@ interface LinkCardProps {
 }
 
 export default function LinkCard({ link, theme, variant }: LinkCardProps) {
+  const [copied, setCopied] = useState(false)
+  const [sharing, setSharing] = useState(false)
   const isCard = theme === 'card'
   const isNeon = theme === 'neon'
   const linkStyle = variant?.linkStyle || 'default'
@@ -44,6 +50,26 @@ export default function LinkCard({ link, theme, variant }: LinkCardProps) {
     if (linkStyle === 'flat') return 'shadow-[var(--shadow)]'
     if (isNeon) return 'hover:shadow-[var(--glow)]'
     return ''
+  }
+
+  // Handle copy link
+  const handleCopyLink = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    e.preventDefault()
+    const success = await copyToClipboard(link.url)
+    if (success) {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  // Handle share link
+  const handleShareLink = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    e.preventDefault()
+    setSharing(true)
+    await shareLink(link.url, link.label)
+    setSharing(false)
   }
 
   return (
@@ -113,6 +139,61 @@ export default function LinkCard({ link, theme, variant }: LinkCardProps) {
               {link.description}
             </p>
           )}
+        </div>
+
+        {/* Action buttons */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {/* Copy button */}
+          <button
+            onClick={handleCopyLink}
+            className={`
+              p-2 rounded-[var(--radius-sm)]
+              bg-[var(--bg)]
+              text-[var(--subtext)]
+              hover:text-[var(--accent)]
+              hover:bg-[var(--surface)]
+              transition-colors duration-200
+              focus:outline-none focus:ring-2 focus:ring-[var(--accent)]
+            `}
+            title={copied ? 'Copiado!' : 'Copiar enlace'}
+            aria-label={copied ? 'Copiado!' : 'Copiar enlace'}
+          >
+            {copied ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            )}
+          </button>
+
+          {/* Share button */}
+          <button
+            onClick={handleShareLink}
+            className={`
+              p-2 rounded-[var(--radius-sm)]
+              bg-[var(--bg)]
+              text-[var(--subtext)]
+              hover:text-[var(--accent)]
+              hover:bg-[var(--surface)]
+              transition-colors duration-200
+              focus:outline-none focus:ring-2 focus:ring-[var(--accent)]
+            `}
+            title="Compartir enlace"
+            aria-label="Compartir enlace"
+            disabled={sharing}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+          </button>
         </div>
 
         {/* Arrow indicator */}
